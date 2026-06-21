@@ -1,0 +1,198 @@
+@use '../../styles/variables' as *;
+@use '../../styles/animations' as *;
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-nav;
+  padding: 0 $gutter;
+  height: $nav-height;
+  opacity: 0;
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    z-index: 10;
+  }
+
+  &__logo-text {
+    font-family: $font-display;
+    font-size: 1.3rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: $color-white;
+
+    &--light {
+      font-weight: 300;
+      color: $color-concrete;
+    }
+  }
+
+  &__logo-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: $color-white;
+  }
+
+  &__links {
+    display: flex;
+    gap: 3rem;
+
+    @media (max-width: $bp-desktop) {
+      display: none;
+    }
+  }
+
+  &__link {
+    font-family: $font-body;
+    font-size: $fs-caption;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: $color-concrete;
+    transition: color $duration-fast ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: $color-white;
+      transform: scaleX(0);
+      transform-origin: right center;
+      transition: transform $duration-medium $ease-out-expo;
+    }
+
+    &:hover {
+      color: $color-white;
+
+      &::after {
+        transform: scaleX(1);
+        transform-origin: left center;
+      }
+    }
+  }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px;
+    z-index: 10;
+
+    @media (max-width: $bp-desktop) {
+      display: flex;
+    }
+  }
+
+  &__burger-line {
+    display: block;
+    width: 24px;
+    height: 1px;
+    background: $color-white;
+    transition: transform $duration-medium $ease-out-expo,
+                opacity $duration-fast ease;
+  }
+
+  &__burger.is-open &__burger-line {
+    &:first-child {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+    &:last-child {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+  }
+
+  &__menu {
+    position: fixed;
+    inset: 0;
+    background: $color-black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity $duration-medium $ease-out-expo,
+                visibility $duration-medium ease;
+    z-index: 5;
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__menu-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  &__menu-link {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 0.8rem 0;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity $duration-medium $ease-out-expo,
+                transform $duration-medium $ease-out-expo,
+                color $duration-fast ease;
+
+    .is-open & {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    &:hover {
+      color: $color-concrete;
+    }
+  }
+
+  &__menu-link-index {
+    font-family: $font-mono;
+    font-size: $fs-micro;
+    color: $color-graphite;
+  }
+
+  &__menu-link-text {
+    font-family: $font-display;
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  &__menu-footer {
+    position: absolute;
+    bottom: 3rem;
+    display: flex;
+    gap: 4rem;
+  }
+
+  &__menu-footer-text {
+    font-family: $font-body;
+    font-size: $fs-micro;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: $color-graphite;
+  }
+}

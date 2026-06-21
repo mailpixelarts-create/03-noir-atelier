@@ -1,0 +1,119 @@
+@use '../../styles/variables' as *;
+@use '../../styles/animations' as *;
+
+.calendar {
+  position: relative;
+  padding: $space-3xl 0;
+  background: $color-black;
+
+  &__header {
+    margin-bottom: $space-xl;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: $space-md;
+    color: $color-graphite;
+  }
+
+  &__label-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: $color-graphite;
+  }
+
+  &__title {
+    font-size: $fs-h1;
+    color: $color-white;
+
+    .line {
+      display: block;
+      overflow: hidden;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__event {
+    display: grid;
+    grid-template-columns: 160px 1fr auto;
+    gap: $space-lg;
+    padding: $space-md 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    transition: background $duration-medium ease;
+    cursor: none;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: 1fr;
+      gap: $space-sm;
+    }
+  }
+
+  &__event-date {
+    color: $color-graphite;
+    padding-top: 0.3rem;
+  }
+
+  &__event-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  &__event-title {
+    font-size: $fs-h4;
+    color: $color-white;
+    transition: color $duration-fast ease;
+
+    .calendar__event:hover & {
+      color: $color-concrete;
+    }
+  }
+
+  &__event-location {
+    color: $color-concrete;
+    font-size: $fs-small;
+  }
+
+  &__event-type {
+    padding-top: 0.3rem;
+
+    @media (max-width: $bp-tablet) {
+      padding-top: 0;
+    }
+  }
+
+  &__event-type-badge {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: $color-graphite;
+    font-size: $fs-micro;
+    transition: border-color $duration-fast ease,
+                color $duration-fast ease;
+
+    .calendar__event:hover & {
+      border-color: rgba(255, 255, 255, 0.15);
+      color: $color-concrete;
+    }
+  }
+
+  &__event-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06), transparent);
+  }
+}

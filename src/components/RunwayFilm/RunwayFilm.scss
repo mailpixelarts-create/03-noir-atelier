@@ -1,0 +1,138 @@
+@use '../../styles/variables' as *;
+@use '../../styles/animations' as *;
+
+.film {
+  position: relative;
+  height: 200vh;
+
+  &__pinned {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__video {
+    position: absolute;
+    inset: -5%;
+    z-index: 0;
+  }
+
+  &__video-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      160deg,
+      $color-deep-black 0%,
+      $color-charcoal 40%,
+      rgba(20, 20, 20, 1) 70%,
+      $color-black 100%
+    );
+  }
+
+  &__video-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 70% 50% at 50% 50%,
+      transparent 0%,
+      rgba(0, 0, 0, 0.6) 100%
+    );
+  }
+
+  &__video-grain {
+    position: absolute;
+    inset: -100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.3'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    opacity: 0.06;
+    animation: grainShift 0.8s steps(1) infinite;
+  }
+
+  &__play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-white;
+    transition: border-color $duration-fast ease,
+                transform $duration-medium $ease-out-expo;
+    z-index: 2;
+
+    &:hover {
+      border-color: $color-white;
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+
+    svg {
+      margin-left: 3px;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: $space-md;
+    color: $color-graphite;
+  }
+
+  &__label-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: $color-graphite;
+  }
+
+  &__title {
+    font-size: $fs-h1;
+    color: $color-white;
+    margin-bottom: $space-lg;
+
+    .line {
+      display: block;
+      overflow: hidden;
+    }
+  }
+
+  &__meta {
+    display: flex;
+    gap: $space-lg;
+    opacity: 0;
+
+    @media (max-width: $bp-tablet) {
+      flex-direction: column;
+      gap: $space-sm;
+    }
+  }
+
+  &__meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+
+    .text-mono {
+      color: $color-graphite;
+    }
+
+    .text-body {
+      color: $color-white;
+      font-size: $fs-small;
+    }
+  }
+}
