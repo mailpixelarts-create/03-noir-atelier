@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/animations' as *;
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
 
 .calendar {
   position: relative;
@@ -117,3 +117,4 @@
     background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06), transparent);
   }
 }
+

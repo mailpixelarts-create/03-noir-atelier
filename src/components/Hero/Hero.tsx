@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
-import { useScrollTrigger } from '../../hooks/useScrollTrigger';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useSplitType } from '../../hooks/useSplitType';
 import './Hero.scss';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -14,6 +16,8 @@ export default function Hero() {
   useSplitType(titleRef, { type: 'lines' });
 
   useEffect(() => {
+    if (!sectionRef.current) return;
+
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 3.4 });
 
@@ -46,22 +50,22 @@ export default function Hero() {
           { opacity: 1, duration: 1, ease: 'expo.out' },
           1.6
         );
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        animation: gsap.to('.hero__bg', {
+          y: '20%',
+          scale: 1.1,
+          ease: 'none',
+        }),
+      });
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
-
-  useScrollTrigger({
-    trigger: sectionRef.current,
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-    animation: gsap.to('.hero__bg', {
-      y: '20%',
-      scale: 1.1,
-      ease: 'none',
-    }),
-  });
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!bgRef.current) return;

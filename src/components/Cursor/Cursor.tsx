@@ -20,6 +20,7 @@ export default function Cursor() {
       gsap.to(cursor, {
         x: mouseX,
         y: mouseY,
+        opacity: 1,
         duration: 0.15,
         ease: 'power2.out',
       });

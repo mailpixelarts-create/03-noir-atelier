@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/animations' as *;
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
 
 .footer {
   position: relative;
@@ -108,3 +108,4 @@
     font-size: $fs-micro;
   }
 }
+

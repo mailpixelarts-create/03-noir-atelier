@@ -49,6 +49,7 @@ export default function Loader({ onComplete }: LoaderProps) {
 
     return () => {
       tl.kill();
+      document.body.classList.remove('loading');
     };
   }, [onComplete]);
 

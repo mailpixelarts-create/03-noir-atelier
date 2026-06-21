@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@import 'variables.scss';
 
 *,
 *::before,
@@ -143,3 +143,4 @@ img {
   background-repeat: repeat;
   background-size: 256px 256px;
 }
+

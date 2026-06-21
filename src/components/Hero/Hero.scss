@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/animations' as *;
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
 
 .hero {
   position: relative;
@@ -120,3 +120,4 @@
     transform-origin: top center;
   }
 }
+

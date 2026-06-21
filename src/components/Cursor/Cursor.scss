@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/animations' as *;
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
 
 .cursor {
   position: fixed;
@@ -69,3 +69,4 @@
     filter: blur(1px);
   }
 }
+

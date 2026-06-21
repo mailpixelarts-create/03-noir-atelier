@@ -1,8 +1,10 @@
-import { useRef } from 'react';
-import { useScrollTrigger } from '../../hooks/useScrollTrigger';
+import { useEffect, useRef } from 'react';
 import { useSplitType } from '../../hooks/useSplitType';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import './Manifesto.scss';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Manifesto() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -11,39 +13,47 @@ export default function Manifesto() {
 
   useSplitType(quoteRef, { type: 'lines,words' });
 
-  useScrollTrigger({
-    trigger: sectionRef.current,
-    start: 'top 80%',
-    end: 'center center',
-    onEnter: () => {
-      gsap.fromTo(
-        '.manifesto__quote .line',
-        { y: 80, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, ease: 'expo.out', stagger: 0.12 }
-      );
-      gsap.fromTo(
-        authorRef.current,
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, ease: 'expo.out', delay: 0.6 }
-      );
-      gsap.fromTo(
-        '.manifesto__line',
-        { scaleX: 0 },
-        { scaleX: 1, duration: 1.5, ease: 'expo.out', delay: 0.3 }
-      );
-    },
-  });
+  useEffect(() => {
+    if (!sectionRef.current) return;
 
-  useScrollTrigger({
-    trigger: sectionRef.current,
-    start: 'top top',
-    end: 'bottom top',
-    scrub: true,
-    animation: gsap.to('.manifesto__bg-text', {
-      x: '-10%',
-      ease: 'none',
-    }),
-  });
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top 80%',
+        end: 'center center',
+        onEnter: () => {
+          gsap.fromTo(
+            '.manifesto__quote .line',
+            { y: 80, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1.2, ease: 'expo.out', stagger: 0.12 }
+          );
+          gsap.fromTo(
+            authorRef.current,
+            { y: 30, opacity: 0 },
+            { y: 0, opacity: 1, duration: 1, ease: 'expo.out', delay: 0.6 }
+          );
+          gsap.fromTo(
+            '.manifesto__line',
+            { scaleX: 0 },
+            { scaleX: 1, duration: 1.5, ease: 'expo.out', delay: 0.3 }
+          );
+        },
+      });
+
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+        animation: gsap.to('.manifesto__bg-text', {
+          x: '-10%',
+          ease: 'none',
+        }),
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section className="manifesto section" ref={sectionRef}>

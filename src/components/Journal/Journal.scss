@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/animations' as *;
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
 
 .journal {
   position: relative;
@@ -156,3 +156,4 @@
     }
   }
 }
+

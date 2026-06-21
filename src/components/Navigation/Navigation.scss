@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/animations' as *;
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
 
 .nav {
   position: fixed;
@@ -196,3 +196,4 @@
     color: $color-graphite;
   }
 }
+

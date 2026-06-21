@@ -1,5 +1,5 @@
-@use '../../styles/variables' as *;
-@use '../../styles/animations' as *;
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
 
 .studio {
   position: relative;
@@ -174,3 +174,4 @@
     margin-top: 0.5rem;
   }
 }
+
