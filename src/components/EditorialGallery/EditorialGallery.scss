@@ -1,0 +1,144 @@
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
+
+.gallery {
+  position: relative;
+  padding: $space-3xl 0;
+  background: $color-black;
+
+  &__header {
+    margin-bottom: $space-xl;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: $space-md;
+    color: $color-graphite;
+  }
+
+  &__label-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: $color-graphite;
+  }
+
+  &__title {
+    font-size: $fs-h1;
+    color: $color-white;
+
+    .line {
+      display: block;
+      overflow: hidden;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    padding: 0 0 0 0;
+
+    @media (max-width: $bp-desktop) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    position: relative;
+    overflow: hidden;
+    cursor: none;
+
+    &:nth-child(5n + 1) {
+      grid-column: span 2;
+
+      @media (max-width: $bp-tablet) {
+        grid-column: span 1;
+      }
+    }
+
+    &:nth-child(7n + 3) {
+      grid-row: span 2;
+    }
+  }
+
+  &__item-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: var(--aspect, 3/4);
+    overflow: hidden;
+  }
+
+  &__item-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      $color-charcoal 0%,
+      rgba(40, 40, 40, 1) 30%,
+      rgba(25, 25, 25, 1) 70%,
+      $color-deep-black 100%
+    );
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(
+          ellipse 60% 40% at 50% 50%,
+          rgba(255, 255, 255, 0.03),
+          transparent
+        );
+    }
+  }
+
+  &__item-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1.5rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 1rem;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity $duration-medium $ease-out-expo,
+                transform $duration-medium $ease-out-expo;
+
+    .gallery__item:hover & {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &__item-index {
+    color: $color-graphite;
+    font-size: $fs-micro;
+  }
+
+  &__item-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  &__item-title {
+    color: $color-white;
+    font-size: $fs-small;
+  }
+
+  &__item-category {
+    color: $color-graphite;
+    font-size: $fs-micro;
+  }
+}
+

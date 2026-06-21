@@ -1,0 +1,78 @@
+@import '../../styles/variables.scss';
+
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: $z-loader;
+  pointer-events: none;
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: $color-black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    clip-path: inset(0 0 0 0);
+  }
+
+  &__grain {
+    position: absolute;
+    inset: -100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+    background-size: 256px 256px;
+    opacity: 0.08;
+    animation: grainShift 0.8s steps(1) infinite;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  &__text {
+    text-align: center;
+    opacity: 0;
+  }
+
+  &__label {
+    display: block;
+    font-family: $font-display;
+    font-size: clamp(2.5rem, 8vw, 6rem);
+    font-weight: 400;
+    color: $color-white;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    line-height: 1;
+  }
+
+  &__sub {
+    display: block;
+    font-family: $font-body;
+    font-size: $fs-caption;
+    font-weight: 300;
+    color: $color-concrete;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+  }
+
+  &__progress-track {
+    width: 200px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+  }
+
+  &__progress-bar {
+    width: 100%;
+    height: 100%;
+    background: $color-white;
+    transform-origin: left center;
+  }
+}
+

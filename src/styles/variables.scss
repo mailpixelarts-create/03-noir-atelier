@@ -1,0 +1,67 @@
+// ─── NOIR ATELIER — Design Tokens ───
+
+// Colors
+$color-black: #0A0A0A;
+$color-deep-black: #050505;
+$color-white: #FAFAFA;
+$color-pure-white: #FFFFFF;
+$color-concrete: #B8B5B0;
+$color-concrete-light: #D4D0CB;
+$color-chrome: #C8C8C8;
+$color-mirror: #E0E0E0;
+$color-soft-beige: #E8E4DF;
+$color-muted-sand: #D4CFC7;
+$color-graphite: #3A3A3A;
+$color-charcoal: #1A1A1A;
+
+// Typography
+$font-display: 'Playfair Display', 'Canela', 'Georgia', serif;
+$font-body: 'Inter', 'Neue Montreal', 'Helvetica Neue', sans-serif;
+$font-mono: 'SF Mono', 'Fira Code', monospace;
+
+// Font Sizes — Editorial Scale
+$fs-hero: clamp(4rem, 12vw, 14rem);
+$fs-h1: clamp(3rem, 8vw, 8rem);
+$fs-h2: clamp(2.2rem, 5vw, 5rem);
+$fs-h3: clamp(1.6rem, 3vw, 3rem);
+$fs-h4: clamp(1.2rem, 2vw, 1.8rem);
+$fs-body: clamp(0.95rem, 1.1vw, 1.15rem);
+$fs-small: clamp(0.75rem, 0.85vw, 0.9rem);
+$fs-caption: clamp(0.65rem, 0.7vw, 0.8rem);
+$fs-micro: clamp(0.55rem, 0.6vw, 0.7rem);
+
+// Spacing — Editorial Grid
+$space-xs: 0.5rem;
+$space-sm: 1rem;
+$space-md: 2rem;
+$space-lg: 4rem;
+$space-xl: 6rem;
+$space-2xl: 10rem;
+$space-3xl: 16rem;
+
+// Layout
+$max-width: 1440px;
+$gutter: clamp(1.5rem, 4vw, 6rem);
+$nav-height: 80px;
+
+// Transitions
+$ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+$ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+$ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+$duration-fast: 0.3s;
+$duration-medium: 0.6s;
+$duration-slow: 1.2s;
+$duration-glacial: 2s;
+
+// Breakpoints
+$bp-mobile: 480px;
+$bp-tablet: 768px;
+$bp-desktop: 1024px;
+$bp-wide: 1440px;
+
+// Z-Index
+$z-cursor: 9999;
+$z-loader: 9000;
+$z-nav: 1000;
+$z-overlay: 500;
+$z-above: 10;

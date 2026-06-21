@@ -1,0 +1,131 @@
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
+
+.process {
+  position: relative;
+  padding: $space-3xl 0;
+  background: $color-black;
+
+  &__header {
+    margin-bottom: $space-xl;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: $space-md;
+    color: $color-graphite;
+  }
+
+  &__label-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: $color-graphite;
+  }
+
+  &__title {
+    font-size: $fs-h1;
+    color: $color-white;
+
+    .line {
+      display: block;
+      overflow: hidden;
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    position: relative;
+    background: rgba(255, 255, 255, 0.01);
+    transition: background $duration-medium ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+  }
+
+  &__item-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+  }
+
+  &__item-placeholder {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      135deg,
+      $color-charcoal 0%,
+      rgba(30, 30, 30, 1) 50%,
+      $color-deep-black 100%
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__item-number-overlay {
+    font-size: clamp(4rem, 8vw, 8rem);
+    color: rgba(255, 255, 255, 0.03);
+    user-select: none;
+  }
+
+  &__item-content {
+    padding: $space-md;
+  }
+
+  &__item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__item-number {
+    color: $color-graphite;
+  }
+
+  &__item-title {
+    font-size: $fs-h4;
+    color: $color-white;
+  }
+
+  &__item-desc {
+    color: $color-concrete;
+    font-size: $fs-small;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 400px;
+  }
+
+  &__item-tags {
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+
+  &__item-tag {
+    padding: 0.25rem 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    color: $color-graphite;
+    font-size: $fs-micro;
+    transition: border-color $duration-fast ease;
+
+    .process__item:hover & {
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+  }
+}
+

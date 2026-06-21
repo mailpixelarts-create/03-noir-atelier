@@ -1,0 +1,147 @@
+@import '../../styles/variables.scss';
+@import '../../styles/animations.scss';
+
+.collection {
+  position: relative;
+  padding: $space-3xl 0;
+  background: $color-black;
+
+  &__header {
+    margin-bottom: $space-xl;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: $space-md;
+    color: $color-graphite;
+  }
+
+  &__label-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: $color-graphite;
+  }
+
+  &__title {
+    font-size: $fs-h1;
+    color: $color-white;
+    margin-bottom: $space-md;
+
+    .line {
+      display: block;
+      overflow: hidden;
+    }
+  }
+
+  &__subtitle {
+    max-width: 500px;
+    color: $color-concrete;
+  }
+
+  &__grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 60px 1fr auto;
+    gap: $space-lg;
+    padding: $space-lg 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    position: relative;
+    transition: background $duration-medium ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    @media (max-width: $bp-tablet) {
+      grid-template-columns: 1fr;
+      gap: $space-sm;
+    }
+  }
+
+  &__item-number {
+    color: $color-graphite;
+    padding-top: 0.5rem;
+  }
+
+  &__item-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  &__item-header {
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  &__item-title {
+    font-size: $fs-h3;
+    color: $color-white;
+    transition: color $duration-fast ease;
+
+    .collection__item:hover & {
+      color: $color-concrete;
+    }
+  }
+
+  &__item-subtitle {
+    color: $color-graphite;
+    font-size: $fs-micro;
+  }
+
+  &__item-desc {
+    max-width: 500px;
+    color: $color-concrete;
+    font-size: $fs-small;
+    line-height: 1.7;
+  }
+
+  &__item-notes {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  &__item-note {
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: $color-graphite;
+    font-size: $fs-micro;
+    transition: border-color $duration-fast ease,
+                color $duration-fast ease;
+
+    .collection__item:hover & {
+      border-color: rgba(255, 255, 255, 0.15);
+      color: $color-concrete;
+    }
+  }
+
+  &__item-price {
+    color: $color-white;
+    padding-top: 0.5rem;
+    text-align: right;
+
+    @media (max-width: $bp-tablet) {
+      text-align: left;
+    }
+  }
+
+  &__item-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06), transparent);
+  }
+}
+
